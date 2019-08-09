@@ -1,0 +1,11 @@
+version: "3"
+services:
+  krunker_free_kr:
+    image: oekintaro/krunker_free_kr:1.0.0
+    depends_on:
+      - "google_chrome_standalone"
+
+  google_chrome_standalone:
+    image: selenium/standalone-chrome:3.141.59-titanium
+    volumes:
+      - /dev/shm:/dev/shm

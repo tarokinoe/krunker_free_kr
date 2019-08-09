@@ -1,6 +1,7 @@
 import argparse
 import logging
 import json
+import socket
 import sys
 import time
 
@@ -22,6 +23,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def wait_for_host_becoming_available(host, port):
+    logger.info('Wait for host becoming available')
+    attempts = 0
+    while True:
+        attempts += 1
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((host, port))
+        if result == 0:
+            break
+        else:
+            if attempts > 12:
+                break
+            time.sleep(5)
+
+
 def main(args):
     acc_name = settings.get('KRUNKER_ACC_NAME')
     acc_pw = settings.get('KRUNKER_ACC_PW')
@@ -40,8 +56,12 @@ def main(args):
         if args.debug:
             driver = webdriver.Chrome(desired_capabilities=caps)
         else:
+            wait_for_host_becoming_available(
+                host="google_chrome_standalone",
+                port=4444
+            )
             driver = webdriver.Remote(
-                command_executor='http://127.0.0.1:4444/wd/hub',
+                command_executor='http://google_chrome_standalone:4444/wd/hub',
                 desired_capabilities=caps
             )
         try:

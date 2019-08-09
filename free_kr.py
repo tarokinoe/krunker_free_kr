@@ -1,6 +1,6 @@
 import argparse
 import logging
-import json
+import os
 import socket
 import sys
 import time
@@ -11,9 +11,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
-with open('settings.json') as f:
-    settings = json.load(f)
 
 logging.basicConfig(
     stream=sys.stdout,
@@ -39,8 +36,8 @@ def wait_for_host_becoming_available(host, port):
 
 
 def main(args):
-    acc_name = settings.get('KRUNKER_ACC_NAME')
-    acc_pw = settings.get('KRUNKER_ACC_PW')
+    acc_name = os.getenv('KRUNKER_ACC_NAME')
+    acc_pw = os.getenv('KRUNKER_ACC_PW')
     if not acc_name or not acc_pw:
         logger.info(
             'Settings KRUNKER_ACC_NAME and KRUNKER_ACC_PW are not found'

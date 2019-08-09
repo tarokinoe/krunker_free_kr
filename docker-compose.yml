@@ -2,6 +2,8 @@ version: "3"
 services:
   krunker_free_kr:
     image: oekintaro/krunker_free_kr:1.0.0
+    env_file:
+      - env.list
     depends_on:
       - "google_chrome_standalone"
 

@@ -1,5 +1,14 @@
-Automatization of clicking "FREE KR" button for [krunker.io](krunker.io) game.
+Automatization of getting "free KR" in krunker.io. 
+
 
 # Installing
+1. Add account data into 'env.list' file 
+    ```
+    KRUNKER_ACC_NAME=<acc name>
+    KRUNKER_ACC_PW=<acc password>
+    ```
 
-1. git clone https://github.com/tarokinoe/krunker_free_kr.git
+2. Run docker 
+    ```
+    docker-compose up
+    ```

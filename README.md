@@ -1,4 +1,4 @@
-Automatization of getting "free KR" in krunker.io. 
+Automatization of getting "free KR" in [krunker.io](krunker.io) game. 
 
 
 # Installing

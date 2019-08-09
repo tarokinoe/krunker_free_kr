@@ -6,8 +6,10 @@ services:
       - env.list
     depends_on:
       - "google_chrome_standalone"
+    restart: always
 
   google_chrome_standalone:
     image: selenium/standalone-chrome:3.141.59-titanium
     volumes:
       - /dev/shm:/dev/shm
+    restart: always

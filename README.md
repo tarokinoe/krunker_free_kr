@@ -15,5 +15,5 @@ Automatization of getting "free KR" in [krunker.io](krunker.io) game.
 
 2. Run docker 
     ```
-    docker-compose up
+    docker-compose up -d
     ```
